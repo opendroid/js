@@ -145,3 +145,32 @@ console.log("Bound to this Obj: " + greetUnbound.call(ajay)); // Call ony object
 // bind with bound the object for life with a specific object
 let sayBritney = greetUnbound.bind({"name":"Britney"});
 console.log("Bound to Britney: " + sayBritney());
+
+console.log('_________________ LESSON 7: Scope mining in => functions _________________');
+Person.prototype.saysHelloAfterOneSec = function () {
+    setTimeout(function () {
+        console.log(`Hello from ${this.name}`); // this is not bound to caller object
+    }, 1000);
+};
+aiden.saysHelloAfterOneSec(); // ${this.name} will be Aiden.
+
+Person.prototype.saysHelloAfterOneSecWithArrow = function () {
+    setTimeout( () => {
+        console.log(`Hello from ${this.name}`); // this is bound to caller object
+    }, 1000);
+};
+
+aiden.saysHelloAfterOneSecWithArrow(); // ${this.name} will be Aiden as this is bound in arrow functions
+
+console.log('_________________ LESSON 8: Module imports _________________');
+
+let oldStyleShowMeLyrics = require("./aModuleToImport").showMeLyrics;
+let oldStyleShowMeNames = require("./aModuleToImport").showMeNames;
+
+oldStyleShowMeLyrics();
+oldStyleShowMeNames();
+
+// Note node does not support ES6 imports yet. You need to transpile
+//import {showMeLyrics,  showMeNames} from "./aModuleToImport";
+//showMeLyrics();
+//showMeNames();
