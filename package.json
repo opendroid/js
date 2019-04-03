@@ -1,0 +1,23 @@
+{
+  "name": "js-experiments-git",
+  "version": "1.0.0",
+  "description": "Miscellaneous algorithms and JS experiments",
+  "main": "indes.js",
+  "scripts": {
+    "test": "dev"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/opendroid/js.git"
+  },
+  "keywords": [
+    "Javascript",
+    "learn"
+  ],
+  "author": "Ajay Thakur",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/opendroid/js/issues"
+  },
+  "homepage": "https://github.com/opendroid/js#readme"
+}
