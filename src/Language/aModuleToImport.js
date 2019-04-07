@@ -1,12 +1,12 @@
 "use strict";
 
 function showMeLyrics () { // ES6 style export
-    console.log("Yo Yo Yo");
-    console.log("Yo Yo Yo");
+  console.log("Yo Yo Yo");
+  console.log("Yo Yo Yo");
 }
 
 function showMeNames () {
-    console.log("Aiden, Sofia and Ajay");
+  console.log("Aiden, Sofia and Ajay");
 }
 
 /**
@@ -16,6 +16,6 @@ function showMeNames () {
  *   module.exports =  {showMeLyrics: showMeLyrics, showMeNames: showMeNames}; Old style export
  */
 module.exports = {
-    showMeLyrics: showMeLyrics,
-    showMeNames: showMeNames
+  showMeLyrics: showMeLyrics,
+  showMeNames: showMeNames
 };

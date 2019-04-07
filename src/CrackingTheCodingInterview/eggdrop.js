@@ -47,24 +47,24 @@ let MAX_SAFE_INTEGER = 9007199254740991;
 
 let nRecurrsions = 0;
 function getMinDropsRecursion(n, k) {
-    nRecurrsions++;
-    // Floors: 0 floors, 0 trials. 1 floor 1 trial
-    if (k <= 1) {
-        return k;
-    }
+  nRecurrsions++;
+  // Floors: 0 floors, 0 trials. 1 floor 1 trial
+  if (k <= 1) {
+    return k;
+  }
 
-    // If you have one egg, use k trails from bottom to up
-    if ( n <= 1) {
-        return k;
-    }
+  // If you have one egg, use k trails from bottom to up
+  if ( n <= 1) {
+    return k;
+  }
 
-    // Meat
-    let minDrops = MAX_SAFE_INTEGER;
-    for (let x = 1; x <= k; x++) {
-        let currDrops = Math.max(getMinDropsRecursion(n-1, x-1), getMinDropsRecursion(n, k-x));
-        minDrops = ( minDrops < currDrops) ? minDrops : currDrops;
-    }
-    return 1 + minDrops;
+  // Meat
+  let minDrops = MAX_SAFE_INTEGER;
+  for (let x = 1; x <= k; x++) {
+    let currDrops = Math.max(getMinDropsRecursion(n-1, x-1), getMinDropsRecursion(n, k-x));
+    minDrops = ( minDrops < currDrops) ? minDrops : currDrops;
+  }
+  return 1 + minDrops;
 }
 
 
@@ -76,48 +76,48 @@ function getMinDropsRecursion(n, k) {
  * @returns {*}
  */
 function drops(n, k) {
-    let minDrops;
-    let i, j, x;
+  let minDrops;
+  let i, j, x;
 
-    // Create array of arrays
-    let eggFloors = new Array(n+1);
-    for (i = 0; i <= n; i++) {
-        eggFloors[i] = new Array(k+1);
+  // Create array of arrays
+  let eggFloors = new Array(n+1);
+  for (i = 0; i <= n; i++) {
+    eggFloors[i] = new Array(k+1);
+  }
+
+  // Init trial: 1 trial for 1 floor and 0 trails for 0 floors
+  for (i = 1; i <= n; i++) {
+    eggFloors[i][1] = 1;
+    eggFloors[i][0] = 0;
+  }
+  // Init: j trials for j floors with 1 egg
+  for (j = 1; j <= k; j++) {
+    eggFloors[1][j] = j;
+  }
+
+  // Eggs:
+  for ( i = 2; i <= n; i++ ) { // Eggs
+    for (j = 2; j <= k; j++) { // Floors
+      eggFloors[i][j] = MAX_SAFE_INTEGER;
+      for (x = 1; x <= j; x++) {
+        minDrops = 1 + Math.max(eggFloors[i-1][x-1], eggFloors[i][j-x]);
+        eggFloors[i][j] = (minDrops < eggFloors[i][j]) ? minDrops : eggFloors[i][j];
+      }
     }
 
-    // Init trial: 1 trial for 1 floor and 0 trails for 0 floors
-    for (i = 1; i <= n; i++) {
-        eggFloors[i][1] = 1;
-        eggFloors[i][0] = 0;
-    }
-    // Init: j trials for j floors with 1 egg
-    for (j = 1; j <= k; j++) {
-        eggFloors[1][j] = j;
-    }
+  }
 
-    // Eggs:
-    for ( i = 2; i <= n; i++ ) { // Eggs
-        for (j = 2; j <= k; j++) { // Floors
-            eggFloors[i][j] = MAX_SAFE_INTEGER;
-            for (x = 1; x <= j; x++) {
-                minDrops = 1 + Math.max(eggFloors[i-1][x-1], eggFloors[i][j-x]);
-                eggFloors[i][j] = (minDrops < eggFloors[i][j]) ? minDrops : eggFloors[i][j];
-            }
-        }
-
-    }
-
-    return eggFloors[n][k];
+  return eggFloors[n][k];
 }
 
 function main(nEggs, kFloors) {
-    if (kFloors < 20) {
-        console.log("Eggs:" + nEggs + ", Floors:" + kFloors + ". getMinDropsRecursion:" +
-            getMinDropsRecursion(nEggs, kFloors) + ", drops: " + drops(nEggs, kFloors));
-        console.log("nRecurrsions:" + nRecurrsions)
-    } else {
-        console.log("Eggs:" + nEggs + ", Floors:" + kFloors + ", drops: " + drops(nEggs, kFloors));
-    }
+  if (kFloors < 20) {
+    console.log("Eggs:" + nEggs + ", Floors:" + kFloors + ". getMinDropsRecursion:" +
+      getMinDropsRecursion(nEggs, kFloors) + ", drops: " + drops(nEggs, kFloors));
+    console.log("nRecurrsions:" + nRecurrsions)
+  } else {
+    console.log("Eggs:" + nEggs + ", Floors:" + kFloors + ", drops: " + drops(nEggs, kFloors));
+  }
 }
 
 console.log("Max Int:" + MAX_SAFE_INTEGER);

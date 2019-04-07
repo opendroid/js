@@ -34,11 +34,11 @@ console.log('_________________ LESSON 1: Arguments dictionary + Template strings
  * @returns {T | (function(*, *): *)}
  */
 function addReadFromArgumentsES5() {
-    // Default arguments are an JS object {"0": "Value 1", "1": "Value 2"}
-    console.log(`Function addReadFromArgumentsES5 arguments: ${JSON.stringify(arguments)}`);
-    return Array.prototype.reduce.call(arguments, function (accumulator, value) {
-        return accumulator + value;
-    });
+  // Default arguments are an JS object {"0": "Value 1", "1": "Value 2"}
+  console.log(`Function addReadFromArgumentsES5 arguments: ${JSON.stringify(arguments)}`);
+  return Array.prototype.reduce.call(arguments, function (accumulator, value) {
+    return accumulator + value;
+  });
 }
 
 console.log(`addReadFromArgumentsES5: 2 + 3 = ${addReadFromArgumentsES5(2,3)}`);
@@ -57,21 +57,21 @@ console.log('_________________ LESSON 2: Arguments as array  _________________')
  * @returns {*}
  */
 function addES6VariableArgs(...numbers) {
-    // ...numbers is an array of numbers []
-    console.log(`addES6VariableArgs: ${JSON.stringify(numbers)}`);
-    return numbers.reduce(function (accumulator, number) {
-        return accumulator + number;
-    })
+  // ...numbers is an array of numbers []
+  console.log(`addES6VariableArgs: ${JSON.stringify(numbers)}`);
+  return numbers.reduce(function (accumulator, number) {
+    return accumulator + number;
+  })
 }
 console.log(`addES6VariableArgs: 2 + 3 = ${addES6VariableArgs(2,3)}`);
 
 console.log('_________________ LESSON 2-a: Arguments as array (rest) and spread _________________');
 // The spread syntax can have proceeding arguments
 function sayStuffToFolks(greeting, farewell, ...names) {
-    names.map(function (name) {
-        console.log(`${greeting} ${name}`);
-        console.log(`${farewell} ${name}`);
-    })
+  names.map(function (name) {
+    console.log(`${greeting} ${name}`);
+    console.log(`${farewell} ${name}`);
+  })
 }
 sayStuffToFolks("Hi", "Goodbye", "Ajay", "Sofia", "Aiden");
 // Pass first two args as spread. See array ["Hi", "Goodbye"] spread into first two elements.
@@ -106,9 +106,9 @@ console.log(`first ${first} and third ${third}`);
 console.log(`Swapped first ${first} and third ${third}`);
 
 let aiden = {
-    name: "Aiden Thakur",
-    grade: 8,
-    hobbies: ["Java", "working out", "try stuff out"]
+  name: "Aiden Thakur",
+  grade: 8,
+  hobbies: ["Java", "working out", "try stuff out"]
 };
 // Declare variables
 //   childName: assign to it property "name"
@@ -131,6 +131,7 @@ console.log(`minusOne: ${minusOne}, minusThree: ${minusThree} and positiveArray:
 
 // ES6 Fetch
 // URL: https://medium.com/@yoniweisbrod/interacting-with-apis-using-react-native-fetch-9733f28566bb
+let fetch = require("node-fetch");
 fetch("http://www.usense.io")
-    .then(response => response.json())
-    .then(data => console.log(data.toString()));
+  .then(response => response.text())
+  .then(body => console.log(body));

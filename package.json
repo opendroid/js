@@ -10,6 +10,9 @@
     "type": "git",
     "url": "git+https://github.com/opendroid/js.git"
   },
+  "dependencies": {
+    "node-fetch": "^2.3.0"
+  },
   "keywords": [
     "Javascript",
     "learn"

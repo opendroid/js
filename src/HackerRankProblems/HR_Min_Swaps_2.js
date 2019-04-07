@@ -3,24 +3,24 @@
 // https://www.geeksforgeeks.org/minimum-number-swaps-required-sort-array/
 // ans = Σi = 1k(cycle_size – 1), where k is the number of cycles
 function minimumSwaps(arr) {
-    let i, count = 0, n = arr.length;
-    for (i = 0; i < n; i++) {
-        if (arr[i] === (i + 1)) {
-            continue;
-        }
-        let j = arr[i]-1;
-        if(j >= 0 && j < arr.length) {
-            // Swap
-            let temp = arr[i];
-            arr[i] = arr[j];
-            arr[j] = temp;
-            count++;
-            console.log("["+i+"]:" + arr[i] + ", swapped with ["+arr[j]+"]");
-            i--;
-        }
-        console.log(JSON.stringify(arr));
+  let i, count = 0, n = arr.length;
+  for (i = 0; i < n; i++) {
+    if (arr[i] === (i + 1)) {
+      continue;
     }
-    return count;
+    let j = arr[i]-1;
+    if(j >= 0 && j < arr.length) {
+      // Swap
+      let temp = arr[i];
+      arr[i] = arr[j];
+      arr[j] = temp;
+      count++;
+      console.log("["+i+"]:" + arr[i] + ", swapped with ["+arr[j]+"]");
+      i--;
+    }
+    console.log(JSON.stringify(arr));
+  }
+  return count;
 }
 
 let testArray = [4, 3, 1, 2];
