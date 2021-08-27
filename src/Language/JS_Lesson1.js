@@ -152,7 +152,7 @@ Person.prototype.saysHelloAfterOneSec = function () {
         console.log(`Hello from ${this.name}`); // this is not bound to caller object
     }, 1000);
 };
-aiden.saysHelloAfterOneSec(); // ${this.name} will be Aiden.
+aiden.saysHelloAfterOneSec(); // ${this.name} will be undefined.
 
 Person.prototype.saysHelloAfterOneSecWithArrow = function () {
     setTimeout( () => {
@@ -174,3 +174,8 @@ oldStyleShowMeNames();
 //import {showMeLyrics,  showMeNames} from "./aModuleToImport";
 //showMeLyrics();
 //showMeNames();
+
+console.log('_________________ LESSON 9: Object Keys to array _________________');
+let aObject = {name: 'Aiden', lastName: 'Thakur'};
+const aObjectArr = Object.keys(aObject).map(key => aObject[key]);
+console.log(`Array: ${JSON.stringify(aObjectArr)}`);

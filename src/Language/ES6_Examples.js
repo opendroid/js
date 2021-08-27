@@ -129,9 +129,72 @@ let someNumbers = [[-1,-2,-3], [1,2,3]];
 let [[minusOne,,minusThree], positiveArray] = someNumbers;
 console.log(`minusOne: ${minusOne}, minusThree: ${minusThree} and positiveArray: ${positiveArray}`);
 
+console.log('_________________ LESSON 5: ES6: Generator function  _________________');
+// Generator functions
+function* getMeABookName() {
+  const bookList= [{name: "The Great Gatsby", author:"F. Scott Fitzgerald"},
+    {name:"The Grapes of Wrath", author:"John Steinbeck"},
+    {name:"Nineteen Eighty-Four", author:"George Orwell"},
+    {name:"Ulysses", author:"James Joyce"},
+    {name:"Lolita", author:"Vladimir Nabokov"},
+    {name:"Catch-22", author:"Joseph Heller"},
+    {name:"The Catcher in the Rye", author:"J. D. Salinger"},
+    {name:"Beloved", author:"Toni Morrison"},
+    {name:"The Sound and the Fury", author:"William Faulkner"},
+    {name:"To Kill a Mockingbird", author:"Harper Lee"},
+    {name:"The Lord of the Rings", author:"J. R. R. Tolkien"},
+    {name:"One Hundred Years of Solitude", author:"Gabriel García Márquez"},
+    {name:"Brave New World", author:"Aldous Huxley"},
+    {name:"To the Lighthouse", author:"Virginia Woolf"},
+    {name:"Invisible Man", author:"Ralph Ellison"},
+    {name:"Gone with the Wind", author:"Margaret Mitchell"},
+    {name:"Jane Eyre", author:"Charlotte Brontë"},
+    {name:"On the Road", author:"Jack Kerouac"},
+    {name:"Pride and Prejudice", author:"Jane Austen"},
+    {name:"Lord of the Flies", author:"William Golding"},
+    {name:"Middlemarch", author:"George Eliot"}];
+  let bookIndex = 0;
+  while (true) {
+    yield bookList[bookIndex];
+    bookIndex = (bookIndex + 1) % bookList.length;
+  }
+}
+
+console.log("Some good books:");
+let aBookGenerator = getMeABookName();
+for (let i = 0; i < 4; i++) {
+  let aBook = aBookGenerator.next().value;
+  console.log("Name: " + aBook.name + ", Author: " + aBook.author);
+}
+
+console.log('_________________ LESSON 6: ES6: fetch .. then  _________________');
 // ES6 Fetch
 // URL: https://medium.com/@yoniweisbrod/interacting-with-apis-using-react-native-fetch-9733f28566bb
+// Example: https://javascript.info/async-await
 let fetch = require("node-fetch");
-fetch("http://www.usense.io")
-  .then(response => response.text())
-  .then(body => console.log(body));
+fetch("https://api.github.com/users/opendroid")
+  .then(response => response.json()) // Treat HTML as a plain JSON. We are not parsing it.
+  .then(userInfo => {
+    if (userInfo && userInfo.hasOwnProperty("followers_url")) {
+      fetch(userInfo.followers_url)
+        .then(response => response.json())
+        .then(followers => console.log("followers: " + followers.length))
+        .catch(err => console.error(err))
+    }
+  }).catch(err => console.error(err));
+
+
+
+console.log('_________________ LESSON 6: Sets  _________________');
+// Set operations
+// === will only return true if the objects it's testing has the same object reference
+// This means that two objects that seem identical, would be considered unequal if they have different references
+// So, if we create  identical objects and add them to a set, they'll all be there because they're considered unequal.
+let setA = new Set([
+  {name: "Ajay", value: "ThakurOne"}, {name: "Ajay", value: "ThakurOne"},
+  {name: "Ajay", value: "ThakurTwo"}, {name: "Ajay", value: "ThakurTwo"}]);
+
+console.log("SetA: "+JSON.stringify([...setA]));
+
+let setB = new Set(["Ajay", "Ajay", "ThakurOne", "ThakurOne", "ThakurTwo", "ThakurTwo"]);
+console.log("SetB: "+ [...setB]);

@@ -1,0 +1,46 @@
+li.na03, li.na04, li.na05 {
+    color: red;
+}
+
+a.goog {
+    border: 3px solid salmon;
+    cursor: url("cursor-1.png"), auto;
+}
+
+ol {
+    cursor: url("cursor-1.png"), auto;
+}
+
+[contenteditable=true] {
+    border: 2px dotted brown;
+    width: 50%;
+}
+[target=_blank] {
+    border-width: 3px;
+    border-style: groove;
+    border-color: aqua;
+}
+
+a:link{
+    color: brown;
+    border: 3px dotted brown;
+}
+
+a:visited {
+    color: blueviolet;
+    border: 3px dotted blueviolet;
+}
+
+a:hover {
+    color: green;
+    border: 3px dotted green;
+    background-color: azure;
+    cursor: url("cursor-1.png"), auto;
+}
+
+a:active {
+    border: 3px dotted red;
+    background-color: bisque;
+    color: aliceblue;
+    cursor: url("cursor-2.png"), auto;
+}
